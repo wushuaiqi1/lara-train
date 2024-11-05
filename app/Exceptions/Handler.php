@@ -3,53 +3,57 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
 {
-    /**
-     * A list of the exception types that are not reported.
-     *
-     * @var array
-     */
-    protected $dontReport = [
-        //
-    ];
 
     /**
-     * A list of the inputs that are never flashed for validation exceptions.
      *
-     * @var array
-     */
-    protected $dontFlash = [
-        'password',
-        'password_confirmation',
-    ];
-
-    /**
-     * Report or log an exception.
-     *
-     * @param  \Throwable  $exception
-     * @return void
-     *
-     * @throws \Throwable
-     */
-    public function report(Throwable $exception)
-    {
-        parent::report($exception);
-    }
-
-    /**
+     * 使异常作为HTTP响应
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $exception
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param Request $request
+     * @param Throwable $e
+     * @return Response
      *
-     * @throws \Throwable
+     * @throws Throwable
      */
-    public function render($request, Throwable $exception)
+    public function render($request, Throwable $e): Response
     {
-        return parent::render($request, $exception);
+        return $this->customRender($e);
+    }
+
+    public function customRender(Throwable $e): Response
+    {
+        var_dump(get_class($e));
+        $status_code = 400;
+        $exception_message = $e->getMessage();
+        if ($e instanceof GlobalException) {
+            $status_code = $e->getStatusCode();
+        }
+        if ($e instanceof NotFoundHttpException) {
+            $exception_message = "route not found";
+        }
+        if ($e instanceof ValidationException) {
+            $status_code = $e->status;
+        }
+
+        $response = [
+            'message' => $exception_message,
+            'status_code' => $status_code,
+            'code' => $e->getCode(),
+        ];
+
+        // 注意配置文件只在服务启动时加载，不会热更新
+        if (app()->environment() != 'production' && env('APP_DEBUG', false)) {
+            $response['trace'] = $e->getTrace();
+        }
+
+        return new Response(json_encode($response), $status_code);
     }
 }
