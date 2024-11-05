@@ -30,7 +30,6 @@ class Handler extends ExceptionHandler
 
     public function customRender(Throwable $e): Response
     {
-        var_dump(get_class($e));
         $status_code = 400;
         $exception_message = $e->getMessage();
         if ($e instanceof GlobalException) {
@@ -41,6 +40,10 @@ class Handler extends ExceptionHandler
         }
         if ($e instanceof ValidationException) {
             $status_code = $e->status;
+            if (!empty($e->errors())) {
+                $first_name = array_key_first($e->errors());
+                $exception_message = $e->errors()[$first_name];
+            }
         }
 
         $response = [
