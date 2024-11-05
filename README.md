@@ -24,6 +24,10 @@ php xxx.php
 php -S localhost:8000 public/index.php
 // Laravel项目启动指定读取的配置文件 APP_ENV在配置文件中设置
 php artisan serve --env={'APP_ENV'} --port=8090
+// 生成表单请求类
+php artisan make:request LoginRequest
+// 生成控制器类
+php artisan make:controller LoginController
 ```
 
 #### 附录
