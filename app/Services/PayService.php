@@ -22,7 +22,7 @@ class PayService
      * @param string $orderNo
      * @return void
      */
-    public function callback(string $orderNo)
+    public function callback(string $orderNo): bool
     {
         $order = $this->orderService->getOrderById($orderNo);
         if (empty($order)) {
@@ -34,7 +34,7 @@ class PayService
             throw new GlobalException(BusinessStatusCode::ORDER_NOT_EXIST, BusinessStatusCode::USER_NOT_EXIST_MSG);
         }
         // 执行后续逻辑
-        sleep(1);
         echo '支付回调====执行成功====';
+        return true;
     }
 }

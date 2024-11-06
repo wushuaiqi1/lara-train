@@ -5,7 +5,7 @@ namespace App\Services;
 
 class UserService
 {
-    public function getUserById(string $userId): array
+    public function getUserById(string $userId)
     {
         return [
             'id' => $userId,
