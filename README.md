@@ -28,6 +28,10 @@ php artisan serve --env={'APP_ENV'} --port=8090
 php artisan make:request LoginRequest
 // 生成控制器类
 php artisan make:controller LoginController
+// 在 Feature 目录下创建一个测试类...
+php artisan make:test UserTest
+// 在 Unit 目录下创建一个测试类...
+php artisan make:test UserTest --unit
 ```
 
 #### 附录

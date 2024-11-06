@@ -30,7 +30,7 @@ class LoginRequest extends CommonRequest
     {
         return [
             // 首次验证停止运行
-            'name' => 'bail|required|int|max:255',
+            'account' => 'bail|required|string|max:16',
             'pwd' => 'required',
             'age' => 'nullable',
         ];
