@@ -5,6 +5,8 @@ namespace App\Services\Cor;
 use App\Services\Cor\Handler\MagicGoodCourseCreateHandler;
 use App\Services\Cor\Handler\SuperCoursewareCreateHandler;
 use Exception;
+use Illuminate\Pipeline\Pipeline;
+use Illuminate\Pipeline\PipelineServiceProvider;
 
 /**
  * @Author: 武帅祺

@@ -4,6 +4,7 @@ namespace App\Services\Cor\Handler;
 
 
 use App\Services\Cor\IChainOfResponsibility;
+use Closure;
 
 class MagicGoodCourseCreateHandler implements IChainOfResponsibility
 {
@@ -13,8 +14,9 @@ class MagicGoodCourseCreateHandler implements IChainOfResponsibility
         return $type == 'magic';
     }
 
-    public static function handle($request)
+    public static function handle($request,Closure $next)
     {
-        echo 'MagicGoodCourseCreateHandler Handle...';
+        echo 'MagicGoodCourseCreateHandler Handle...'.PHP_EOL;
+        $next($request);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Services\Cor;
 
+use Closure;
+
 /**
  * @Author: 武帅祺
  * @Date: 2024/11/7
@@ -12,5 +14,5 @@ interface IChainOfResponsibility
 {
     public static function rule(string $type): string;
 
-    public static function handle($request);
+    public static function handle($request, Closure $next);
 }
