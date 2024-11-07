@@ -14,9 +14,8 @@ class MagicGoodCourseCreateHandler implements IChainOfResponsibility
         return $type == 'magic';
     }
 
-    public static function handle($request,Closure $next)
+    public static function handle($request)
     {
-        echo 'MagicGoodCourseCreateHandler Handle...'.PHP_EOL;
-        $next($request);
+        echo 'MagicGoodCourseCreateHandler Handle...' . PHP_EOL;
     }
 }

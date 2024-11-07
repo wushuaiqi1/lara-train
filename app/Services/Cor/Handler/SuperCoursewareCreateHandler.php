@@ -13,9 +13,8 @@ class SuperCoursewareCreateHandler implements IChainOfResponsibility
         return $type == 'super';
     }
 
-    public static function handle($request, Closure $next)
+    public static function handle($request)
     {
-        echo 'SuperCoursewareCreateHandler Handle...'.PHP_EOL;
-        $next($request);
+        echo 'SuperCoursewareCreateHandler Handle...' . PHP_EOL;
     }
 }

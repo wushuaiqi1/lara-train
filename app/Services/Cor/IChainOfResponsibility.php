@@ -14,5 +14,5 @@ interface IChainOfResponsibility
 {
     public static function rule(string $type): string;
 
-    public static function handle($request, Closure $next);
+    public static function handle($request);
 }
