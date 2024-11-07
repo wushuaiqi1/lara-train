@@ -34,6 +34,10 @@ php artisan make:test UserTest
 php artisan make:test UserTest --unit
 ```
 
+#### COR
+// 责任链模式，COR简称
+chain of responsibility pattern
+
 #### 附录
 
 - https://www.php.net/manual/zh/
