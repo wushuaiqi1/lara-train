@@ -11,6 +11,7 @@ class OrderService
      */
     public function getOrderById(string $orderId)
     {
+        echo 'order';
         return [
             'id' => $orderId,
             'userId' => '7750',

@@ -25,3 +25,7 @@ Route::post('login', [LoginController::class, 'login']);
 Route::post('register', [LoginController::class, 'register']);
 
 Route::get('contract/getSimilar', [ContractController::class, 'getSimilarContract']);
+
+Route::get('env',function (){
+   return getenv('AUTHOR');
+});

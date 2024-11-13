@@ -24,6 +24,7 @@ class PayService
      */
     public function callback(string $orderNo): bool
     {
+        echo 'pay.';
         $order = $this->orderService->getOrderById($orderNo);
         if (empty($order)) {
             throw new GlobalException(BusinessStatusCode::ORDER_NOT_EXIST, BusinessStatusCode::ORDER_NOT_EXIST_MSG);
