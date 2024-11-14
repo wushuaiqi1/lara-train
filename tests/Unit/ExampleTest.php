@@ -4,6 +4,8 @@ namespace Tests\Unit;
 
 use App\Services\UserService;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpFoundation\HeaderBag;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use function Sodium\compare;
 
 class ExampleTest extends TestCase
@@ -45,5 +47,30 @@ class ExampleTest extends TestCase
             return $source == $verb;
         }));
         $this->assertEquals(['post'],$res);
+    }
+
+    public function test_header_bag()
+    {
+
+        $UPPER = '-mp4';
+        $LOWER = '-jpg';
+        // 翻译，第一个参数是元数据，第二个是from字符串，第三个是to字符串。
+        $key = strtr('mps', $UPPER, $LOWER);
+        $this->assertEquals('jps',$key);
+    }
+
+    public function test_date()
+    {
+        // GMT时间
+        $res = gmdate('D, d M Y H:i:s').' GMT';
+        echo $res;
+    }
+
+    public function test_return_param()
+    {
+        // ['variable']从数组中读取变量
+        [$name, $nihao] = ['hello', 'nihao'];
+        $this->assertEquals('hello', $name);
+        $this->assertEquals('nihao', $nihao);
     }
 }

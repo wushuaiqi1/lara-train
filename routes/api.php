@@ -26,6 +26,15 @@ Route::post('register', [LoginController::class, 'register']);
 
 Route::get('contract/getSimilar', [ContractController::class, 'getSimilarContract']);
 
-Route::get('env',function (){
-   return getenv('AUTHOR');
+Route::get('env', function () {
+    return getenv('AUTHOR');
 });
+
+
+Route::namespace('auth')
+    ->get('auth', 'AuthController@auth');
+
+Route::get('auth', 'AuthController@auth');
+
+
+Route::get('path',[\App\Http\Controllers\AuthController::class,'testPath']);
