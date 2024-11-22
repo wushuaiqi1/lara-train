@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 use Tests\TestCase;
 
 class UserTest extends TestCase
@@ -57,5 +58,17 @@ class UserTest extends TestCase
 
         // ID作为key
         DB::table('user')->pluck('username','id');
+    }
+
+    /**
+     * 使用 dd 方法可以显示调试信息，然后停止执行请求。
+     * dump 方法同样可以显示调试信息，但是不会停止执行请求：
+     * @return void
+     */
+    public function test_dump()
+    {
+        DB::table('user')->dump();
+        $this->assertTrue(true);
+        DB::table('user')->dd();
     }
 }
