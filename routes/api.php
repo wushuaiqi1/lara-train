@@ -41,4 +41,6 @@ Route::get('path',[\App\Http\Controllers\AuthController::class,'testPath']);
 
 
 Route::get('hi',[\App\Http\Controllers\HiController::class,'hi']);
+
+Route::post('hi/post', [\App\Http\Controllers\HiController::class, 'hiPost']);
 // 需要注意，api.php有一个前缀。
