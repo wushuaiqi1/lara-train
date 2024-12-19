@@ -38,3 +38,7 @@ Route::get('auth', 'AuthController@auth');
 
 
 Route::get('path',[\App\Http\Controllers\AuthController::class,'testPath']);
+
+
+Route::get('hi',[\App\Http\Controllers\HiController::class,'hi']);
+// 需要注意，api.php有一个前缀。

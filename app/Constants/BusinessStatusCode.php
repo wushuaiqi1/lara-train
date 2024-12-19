@@ -14,5 +14,5 @@ class BusinessStatusCode
     const ORDER_NOT_EXIST_MSG = '订单不存在';
     const USER_NOT_EXIST = 2001;
     const USER_NOT_EXIST_MSG = '用户不存在';
-
+    
 }
